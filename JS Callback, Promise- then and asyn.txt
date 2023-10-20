@@ -1,0 +1,116 @@
+JS Callback, Promise- then and async /await
+
+Callback Example:-
+
+
+function getCheese(callback){
+    setTimeout(()=>{
+        const cheese="cheese"
+        console.log("here is your cheese")
+        callback(cheese)
+    },2000)
+}
+function getDough(cheese,callback){
+    setTimeout(()=>{
+        const dough="dough"
+        console.log("here is your dough and cheese")
+        callback(dough)
+    },2000)
+}
+function getPizza(dough,callback){
+    setTimeout(()=>{
+        const pizza="pizza"
+        console.log("here is your dough and cheese and pizza")
+        callback(pizza)
+    },2000)
+}
+
+getCheese((cheese)=>{
+    getDough(cheese,(dough)=>{
+        getPizza(dough,(pizza)=>{
+            console.log("Got my pizza",pizza)
+        })
+    })
+})
+
+Promise- then() example
+
+function getCheese(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+        const cheese="cheese"
+        // console.log("here is your cheese")
+        resolve(cheese)
+    },2000)
+    })
+}
+function getDough(cheese){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+        const dough="dough"
+        // console.log("here is your dough and cheese")
+        resolve(dough)
+    },2000)
+    })
+}
+function getPizza(dough){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+        const pizza="dough"
+        // console.log("here is your dough and cheese and pizza")
+        resolve(pizza)
+    },2000)
+    })
+}
+
+getCheese().then((cheese)=>{
+    console.log("here is your cheese")
+    return getDough(cheese)
+}).then((dough)=>{
+    console.log("here is your dough and cheese")
+    return getPizza(dough)
+}).then((pizza)=>{
+    console.log("here is your dough and cheese and pizza")
+})
+
+Promise with async await Example
+
+function getCheese(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+        const cheese="cheese"
+        // console.log("here is your cheese")
+        resolve(cheese)
+    },2000)
+    })
+}
+function getDough(cheese){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+        const dough="dough"
+        // console.log("here is your dough and cheese")
+        resolve(dough)
+    },2000)
+    })
+}
+function getPizza(dough){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+        const pizza="dough"
+        // console.log("here is your dough and cheese and pizza")
+        resolve(pizza)
+    },2000)
+    })
+}
+
+async function orderPizza(){
+    const cheese=await getCheese()
+    console.log('Here is cheese')
+    const dough=await getDough(cheese)
+    console.log('Here is dough')
+    const pizza=await getPizza(dough)
+    console.log('here is pizza')
+    console.log('Process is complete')
+}
+
+orderPizza();
