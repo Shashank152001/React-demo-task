@@ -13,6 +13,7 @@ import LineChart from './Components/LineChart';
 import Demo from './Components/demo';
 import Memo from './Components/Memo';
 import Callback from './Components/Callback';
+import EditableTable from './Components/EditableTable';
 // import { useState } from 'react';
 // import {UserData} from './UserData'
 
@@ -71,6 +72,7 @@ function App() {
           <Route element={<BarChart/>} path='/chart'></Route>
           <Route element={<LineChart/>} path='/linechart'></Route>
           <Route element={<Demo/>} path='/demo'></Route>
+          <Route element={<EditableTable/>} path='/edit'></Route>
           <Route element={<ProtectRoute/>} path='/home'>
             <Route path='/home' element={<Home/>}/>
           </Route>
